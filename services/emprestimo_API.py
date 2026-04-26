@@ -22,16 +22,15 @@ def lista_brinquedo():
     return list(db.briquedos.values())
 
 #----------------------------------------------------------
-def criar_emprestimo(id:int,brinquedo_id:int,datas: str,multa: float,crianca_id:int,status:bool=True):
-    emprestimo=Emprestimo(
+def criar_emprestimo(id: int, brinquedo_id: int, datas: str, multa: float, crianca_id: list = [], status: bool = True):
+    emprestimo = Emprestimo(
         id=id,
         brinquedo_id=brinquedo_id,
         datas=datas,
         multa=multa,
         crianca_id=crianca_id
-        
     )
-    db.emprestimos[emprestimo.id]=emprestimo
+    db.emprestimos[emprestimo.id] = emprestimo
     return emprestimo
 
 def listar_emprestimos():
@@ -55,6 +54,8 @@ def alterar_emprestimos_id(id,crianca_id):
     return emprestimo
 
 def buscar_emprestimos_crianca_id(crianca_id):
-    emprestimo=db.emprestimos
-    emprestimo.crianca_id.get(crianca_id)
-    return emprestimo
+    for emprestimo in db.emprestimos.values():
+        if crianca_id in emprestimo.crianca_id:
+            return emprestimo
+    raise ValueError("Crianca não encontrada")
+    

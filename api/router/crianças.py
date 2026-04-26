@@ -9,6 +9,6 @@ def post_crianca(crianca:CriancaCreate):
     return criar_crianca(crianca)
 
 
-router.get("",response_model=list[CriancaOut])
+@router.get("",response_model=list[CriancaOut])
 def get_crianca():
     return lista_crianca()

@@ -1,18 +1,18 @@
 from pydantic import BaseModel
+from typing import List
 
 class EmprestimoCreate(BaseModel):
-    id:int
-    brinquedo_id:int
+    id: int
+    brinquedo_id: int
     datas: str
-    status:bool=True
-    crianca_id=int
-    
+    status: bool = True
+    crianca_id: List[int] = []
 
 class EmprestimoOut(BaseModel):
     multa: float
-    crianca_id:int =[]
-    status:bool
-    id:int
-    brinquedo_id:int
+    crianca_id: List[int] = []
+    status: bool
+    id: int
+    brinquedo_id: int
     datas: str
     
